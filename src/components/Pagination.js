@@ -15,18 +15,18 @@ export default function Pagination({
 	return (
 		<div className='pagination'>
 			<div className='prev_container' onClick={goToPrevPage}>
-				<button className='prev-btn' disabled={currentPage === 1}>
+				<button className='prev_btn' disabled={currentPage === 1}>
 					Prev
 				</button>
 			</div>
 			{pageNumbers.map(number => (
 				<div
 					key={number}
-					className='page-item'
+					className='page_item'
 					onClick={() => paginate(number)}
 				>
 					<button
-						className='page-btn'
+						className='page_btn'
 						style={{ color: currentPage === number && 'red' }}
 					>
 						{number}
@@ -35,7 +35,7 @@ export default function Pagination({
 			))}
 			<div className='next_container'>
 				<button
-					className='next-btn'
+					className='next_btn'
 					onClick={goToNextPage}
 					disabled={currentPage === numOfPages}
 				>

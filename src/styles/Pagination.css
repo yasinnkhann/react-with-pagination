@@ -4,7 +4,7 @@
 	padding: 1rem;
 }
 
-.page-item,
+.page_item,
 .prev_container,
 .next_container {
 	display: flex;
@@ -16,9 +16,9 @@
 	cursor: pointer;
 }
 
-.page-btn,
-.prev-btn,
-.next-btn {
+.page_btn,
+.prev_btn,
+.next_btn {
 	background: none;
 	color: inherit;
 	border: none;
