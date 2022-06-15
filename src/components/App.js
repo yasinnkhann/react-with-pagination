@@ -9,6 +9,10 @@ export default function App() {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [postsPerPage] = useState(5);
 
+	const endIdx = currentPage * postsPerPage;
+	const startIdx = endIdx - postsPerPage;
+	const currentPosts = posts.slice(startIdx, endIdx);
+
 	const getPosts = async () => {
 		setLoading(true);
 		const res = await fetch('https://jsonplaceholder.typicode.com/posts');
@@ -21,11 +25,22 @@ export default function App() {
 		getPosts();
 	}, []);
 
-	// const startIdx = currentPage * postsPerPage - postsPerPage;
-	// const endIdx = startIdx + postsPerPage;
-	const endIdx = currentPage * postsPerPage;
-	const startIdx = endIdx - postsPerPage;
-	const currentPosts = posts.slice(startIdx, endIdx);
+	const goToNextPage = () => {
+		setCurrentPage(currPage => currPage + 1);
+	};
+
+	const goToPrevPage = () => {
+		setCurrentPage(currPage => currPage - 1);
+	};
+
+	const handlePagination = pageNum => {
+		setCurrentPage(pageNum);
+	};
+
+	const getPaginationGroup = () => {
+		let start = Math.floor((currentPage - 1) / postsPerPage) * postsPerPage;
+		return new Array(postsPerPage).fill().map((_, idx) => start + idx + 1);
+	};
 
 	return (
 		<div className='app'>
@@ -33,8 +48,11 @@ export default function App() {
 			<Pagination
 				postsPerPage={postsPerPage}
 				totalPosts={posts.length}
-				paginate={pageNum => setCurrentPage(pageNum)}
+				paginate={handlePagination}
 				currentPage={currentPage}
+				goToPrevPage={goToPrevPage}
+				goToNextPage={goToNextPage}
+				pageNumbers={getPaginationGroup()}
 			/>
 		</div>
 	);

@@ -6,15 +6,17 @@ export default function Pagination({
 	totalPosts,
 	paginate,
 	currentPage,
+	goToPrevPage,
+	goToNextPage,
+	pageNumbers,
 }) {
-	const pageNumbers = [];
-
-	for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
-		pageNumbers.push(i);
-	}
-
 	return (
 		<div className='pagination'>
+			<div className='prev_container' onClick={goToPrevPage}>
+				<button className='prev-btn' disabled={currentPage === 1}>
+					Prev
+				</button>
+			</div>
 			{pageNumbers.map(number => (
 				<div
 					key={number}
@@ -29,6 +31,15 @@ export default function Pagination({
 					</button>
 				</div>
 			))}
+			<div className='next_container'>
+				<button
+					className='next-btn'
+					onClick={goToNextPage}
+					disabled={currentPage === Math.ceil(totalPosts / postsPerPage)}
+				>
+					Next
+				</button>
+			</div>
 		</div>
 	);
 }

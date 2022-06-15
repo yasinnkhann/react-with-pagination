@@ -4,7 +4,9 @@
 	padding: 1rem;
 }
 
-.page-item {
+.page-item,
+.prev_container,
+.next_container {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -14,7 +16,9 @@
 	cursor: pointer;
 }
 
-.page-btn {
+.page-btn,
+.prev-btn,
+.next-btn {
 	background: none;
 	color: inherit;
 	border: none;
