@@ -10,6 +10,8 @@ export default function Pagination({
 	goToNextPage,
 	pageNumbers,
 }) {
+	const numOfPages = Math.ceil(totalPosts / postsPerPage);
+
 	return (
 		<div className='pagination'>
 			<div className='prev_container' onClick={goToPrevPage}>
@@ -35,7 +37,7 @@ export default function Pagination({
 				<button
 					className='next-btn'
 					onClick={goToNextPage}
-					disabled={currentPage === Math.ceil(totalPosts / postsPerPage)}
+					disabled={currentPage === numOfPages}
 				>
 					Next
 				</button>
