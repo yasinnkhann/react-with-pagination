@@ -19,11 +19,11 @@ export default function Pagination({
 			{pageNumbersArr.map(number => (
 				<div
 					key={number}
-					className='page-item'
+					className='page_item'
 					onClick={() => paginate(number)}
 				>
 					<button
-						className='page-btn'
+						className='page_btn'
 						style={{ color: currentPage === number && 'red' }}
 					>
 						{number}
