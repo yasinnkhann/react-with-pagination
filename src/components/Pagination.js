@@ -7,15 +7,16 @@ export default function Pagination({
 	paginate,
 	currentPage,
 }) {
-	const pageNumbers = [];
+	const pageNumbersArr = [];
+	const pageNumbers = Math.ceil(totalPosts / postsPerPage);
 
-	for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
-		pageNumbers.push(i);
+	for (let i = 1; i <= pageNumbers; i++) {
+		pageNumbersArr.push(i);
 	}
 
 	return (
 		<div className='pagination'>
-			{pageNumbers.map(number => (
+			{pageNumbersArr.map(number => (
 				<div
 					key={number}
 					className='page-item'
