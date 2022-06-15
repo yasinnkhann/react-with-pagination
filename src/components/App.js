@@ -12,10 +12,14 @@ export default function App() {
 
 	const getPosts = async () => {
 		setLoading(true);
-		const res = await fetch('https://jsonplaceholder.typicode.com/posts');
-		const data = await res.json();
-		setPosts(data);
-		setCurrPosts(data.slice(0, 5));
+		try {
+			const res = await fetch('https://jsonplaceholder.typicode.com/posts');
+			const data = await res.json();
+			setPosts(data);
+			setCurrPosts(data.slice(0, 5));
+		} catch (err) {
+			console.error(err);
+		}
 		setLoading(false);
 	};
 
