@@ -5,6 +5,7 @@ import '../styles/App.css';
 
 export default function App() {
 	const [posts, setPosts] = useState([]);
+	const [currPosts, setCurrPosts] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [postsPerPage] = useState(5);
@@ -14,6 +15,7 @@ export default function App() {
 		const res = await fetch('https://jsonplaceholder.typicode.com/posts');
 		const data = await res.json();
 		setPosts(data);
+		setCurrPosts(data.slice(0, 5));
 		setLoading(false);
 	};
 
@@ -21,15 +23,16 @@ export default function App() {
 		getPosts();
 	}, []);
 
-	// const startIdx = currentPage * postsPerPage - postsPerPage;
-	// const endIdx = startIdx + postsPerPage;
-	const endIdx = currentPage * postsPerPage;
-	const startIdx = endIdx - postsPerPage;
-	const currentPosts = posts.slice(startIdx, endIdx);
+	useEffect(() => {
+		const endIdx = currentPage * postsPerPage;
+		const startIdx = endIdx - postsPerPage;
+		const postsCopy = [...posts];
+		setCurrPosts(postsCopy.slice(startIdx, endIdx));
+	}, [currentPage, posts, postsPerPage]);
 
 	return (
 		<div className='app'>
-			<Posts posts={currentPosts} loading={loading} />
+			<Posts posts={currPosts} loading={loading} />
 			<Pagination
 				postsPerPage={postsPerPage}
 				totalPosts={posts.length}
