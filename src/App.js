@@ -34,19 +34,6 @@ export default function App() {
 		setCurrPosts(postsCopy.slice(startIdx, endIdx));
 	}, [currentPage, posts, postsPerPage]);
 
-	const goToNextPage = () => {
-		setCurrentPage(currPage => currPage + 1);
-	};
-
-	const goToPrevPage = () => {
-		setCurrentPage(currPage => currPage - 1);
-	};
-
-	const getPaginationGroup = () => {
-		let start = Math.floor((currentPage - 1) / postsPerPage) * postsPerPage;
-		return new Array(postsPerPage).fill(null).map((_, idx) => start + idx + 1);
-	};
-
 	return (
 		<div className='app'>
 			<Posts posts={currPosts} loading={loading} />
@@ -55,9 +42,6 @@ export default function App() {
 				totalPosts={posts.length}
 				paginate={pageNum => setCurrentPage(pageNum)}
 				currentPage={currentPage}
-				goToPrevPage={goToPrevPage}
-				goToNextPage={goToNextPage}
-				pageNumbers={getPaginationGroup()}
 			/>
 		</div>
 	);
