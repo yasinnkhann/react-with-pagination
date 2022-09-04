@@ -14,9 +14,10 @@ export default function Pagination({
 
 	return (
 		<div className='pagination'>
-			<div className='prev_container' onClick={goToPrevPage}>
+			<div className='prev_container'>
 				<button
 					className='prev_btn'
+					onClick={goToPrevPage}
 					disabled={currentPage === 1}
 					style={{ color: currentPage === 1 ? 'gray' : undefined }}
 				>
