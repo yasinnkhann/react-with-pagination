@@ -1,0 +1,30 @@
+.pagination {
+	display: flex;
+	justify-content: center;
+	padding: 1rem;
+}
+
+.page_item,
+.prev_container,
+.next_container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.5rem;
+	border: 1px solid #ccc;
+	border-radius: 0.25rem;
+	cursor: pointer;
+}
+
+.page_btn,
+.prev_btn,
+.next_btn {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+	color: blue;
+}
